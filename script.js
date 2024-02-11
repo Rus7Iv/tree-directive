@@ -1,39 +1,43 @@
 function buildTree(data) {
     let tree = {};
     for(let item of data) {
-        if(item.head === null) {
-            tree[item.id] = item;
-            tree[item.id].children = [];
-        }
+        item.children = [];
+        tree[item.id] = item;
     }
-    for(let item of data) {
-        if(item.head !== null) {
-            if(tree[item.head]) {
-                tree[item.head].children.push(item);
-            }
+    for(let id in tree) {
+        if(tree[id].head !== null) {
+            tree[tree[id].head].children.push(tree[id]);
         }
     }
     return tree;
 }
 
-function displayTree(tree) {
+function displayTree(tree, level = 0) {
     let html = '';
     for(let id in tree) {
-        html += '<li>';
-        if(tree[id].node === 1) {
-            html += '<span class="folder-icon"></span>';
+        if(tree[id].head === null) {
+            html += createNode(tree[id], level);
         }
-        html += tree[id].name + ' (' + tree[id].price + ')';
-        if(tree[id].children && tree[id].children.length > 0) {
-            html += '<ul>';
-            html += displayTree(tree[id].children);
-            html += '</ul>';
-        }
-        html += '</li>';
     }
     return html;
 }
 
+function createNode(node, level) {
+    let html = '<li style="margin-left:' + (level * 20) + 'px">';
+    if(node.node === 1) {
+        html += '<span class="folder-icon"></span>';
+    }
+    html += node.name + ' (' + node.price + ')';
+    if(node.children.length > 0) {
+        html += '<ul>';
+        for(let child of node.children) {
+            html += createNode(child, level + 1);
+        }
+        html += '</ul>';
+    }
+    html += '</li>';
+    return html;
+}
 
 fetch('./services.json')
     .then(response => response.json())
