@@ -27,7 +27,10 @@ function createNode(node, level) {
     if(node.node === 1) {
         html += '<arrow-icon></arrow-icon>';
     }
-    html += node.name + ' (' + node.price + ')';
+    html += node.name;
+    if(node.price !== 0) {
+        html += ' (' + node.price + ')';
+    }
     if(node.children.length > 0) {
         html += '<ul>';
         for(let child of node.children) {
