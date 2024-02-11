@@ -25,7 +25,7 @@ function displayTree(tree, level = 0) {
 function createNode(node, level) {
     let html = '<li style="margin-left:' + (level * 20) + 'px">';
     if(node.node === 1) {
-        html += '<span class="folder-icon"></span>';
+        html += '<arrow-icon></arrow-icon>';
     }
     html += node.name + ' (' + node.price + ')';
     if(node.children.length > 0) {
