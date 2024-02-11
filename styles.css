@@ -34,10 +34,10 @@ li.open > ul {
     display: block;
 }
 
-.folder-icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-size: cover;
-    margin-right: 5px;
+arrow-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+li.open > arrow-icon {
+    transform: rotate(180deg);
 }
