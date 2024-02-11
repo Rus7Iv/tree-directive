@@ -20,6 +20,9 @@ function displayTree(tree) {
     let html = '';
     for(let id in tree) {
         html += '<li>';
+        if(tree[id].node === 1) {
+            html += '<span class="folder-icon"></span>';
+        }
         html += tree[id].name + ' (' + tree[id].price + ')';
         if(tree[id].children && tree[id].children.length > 0) {
             html += '<ul>';
@@ -30,6 +33,7 @@ function displayTree(tree) {
     }
     return html;
 }
+
 
 fetch('./services.json')
     .then(response => response.json())

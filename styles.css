@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #F0F0F0;
 }
 
 ul, li {
@@ -9,12 +10,31 @@ ul, li {
 li {
     margin-left: 20px;
     cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 2px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #e8e8e8;
 }
 
 li ul {
     display: none;
+    margin-left: 20px;
+    padding-left: 0;
 }
 
 li.open > ul {
     display: block;
+}
+
+.folder-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('folder-icon.png');
+    background-size: cover;
+    margin-right: 5px;
 }
